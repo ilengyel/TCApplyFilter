@@ -72,7 +72,7 @@
             <testParameters />
             <children />
           </testItem>
-          <testItem name="ProjectTestItem16" key="{7AD85196-C32A-4FD1-A3C3-231EDD34AAB2}" group="False" enabled="True" testMoniker="{BD219C1B-E9EF-49FB-8131-CBCFE599694C}US25440_Configure_the_workstation_parameters" count="1" timeout="2" stopOnError="2" stopOnException="2" description="">
+          <testItem name="ProjectTestItem16" key="{7AD85196-C32A-4FD1-A3C3-231EDD34AAB2}" group="False" enabled="True" testMoniker="{BD219C1B-E9EF-49FB-8131-CBCFE599694C}US25440_Configure_the_workstation_parameters" count="1" timeout="2" stopOnError="2" stopOnException="2" description="with space, five">
             <testParameters />
             <children />
           </testItem>

@@ -5,30 +5,27 @@
     using System.Linq;
     using CommandLine;
 
-    public class ApplyFilterCommand
+    [Verb("apply", HelpText = "Apply the filter by enabling test cases which have tags defined by the supplied list, and disabling the rest.")]
+    public class ApplyFilterCommand : Command
     {
-        [Option('m', "mds", Required = true, HelpText = "TestComplete test items list file.")]
-        public string MdsFile { get; set; }
-
         [Option('t', "tags", HelpText = "List of tags to filter in. In OR mode.")]
         public IEnumerable<string> Tags { get; set; }
 
         [Option('o', "output", HelpText = "Output file for mutated mds file. Default is to update existing file inline.")]
         public string OutputFile { get; set; }
 
-        public int Run()
+        protected override void Handle()
         {
-            try
+            var targetFile = OutputFile ?? MdsFile;
+            var filter = new TestCompleteFilter();
+            var tags = Tags
+                .Select(t => t.Trim(','))
+                .Where(t => !string.IsNullOrWhiteSpace(t))
+                .ToList();
+            var enabledList = filter.FilterItems(MdsFile, targetFile, tags);
+            foreach (var testItem in enabledList)
             {
-                var targetFile = OutputFile ?? MdsFile;
-                var filter = new TestCompleteFilter();
-                filter.FilterItems(MdsFile, targetFile, Tags.ToList());
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                return 1;
+                Console.WriteLine(testItem);
             }
         }
     }
