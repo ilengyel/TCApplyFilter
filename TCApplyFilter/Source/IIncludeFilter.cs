@@ -4,6 +4,10 @@
 
     public interface IIncludeFilter<T>
     {
-        void FilterItems(string input, string output, IList<T> includeItems);
+        IEnumerable<string> FilterItems(string input, string output, IList<T> includeItems);
+
+        IEnumerable<string> ListItems(string input);
+
+        IEnumerable<string> ListTags(string input);
     }
 }

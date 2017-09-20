@@ -13,17 +13,17 @@
         public void TestInitial()
         {
             // Arrange
-            var tags = new List<string> { "one", "two", "three" };
+            var tags = new List<string> { "one", "two", "three", "with space" };
             var target = new TestCompleteFilter();
             var input = Path.Combine("Resources", "Sample1.xml");
-            var output = Path.Combine("Sample1_filtered.xml");
+            var output = Path.Combine("Resources", "Sample1_filtered.xml");
             if (File.Exists(output))
             {
                 File.Delete(output);
             }
 
             // Act
-            target.FilterItems(input, output, tags);
+            var items = target.FilterItems(input, output, tags).ToList();
             var testItems = XDocument.Load(output).Descendants("testItem").ToList();
 
             // Assert
@@ -37,6 +37,7 @@
             AssertItem(testItems, "Iteration4", false);
             AssertItem(testItems, "ProjectTestItem5", true);
             AssertItem(testItems, "ProjectTestItem7", false);
+            AssertItem(testItems, "ProjectTestItem16", true);
         }
 
         public void AssertItem(IList<XElement> testItems, string itemName, bool enabled)

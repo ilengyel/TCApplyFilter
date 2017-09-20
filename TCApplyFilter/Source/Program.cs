@@ -8,8 +8,8 @@
         /// Main method for program
         /// </summary>
         /// <param name="args">The arguments.</param>
-        public static void Main(string[] args)
-            => Parser.Default.ParseArguments<ApplyFilterCommand>(args)
-                .WithParsed(c => c.Run());
+        public static void Main(string[] args) =>
+            Parser.Default.ParseArguments<ApplyFilterCommand, ListTestCases, ListTagsCommand>(args)
+                .MapResult<Command, int>(command => command.Run(), _ => 1);
     }
 }

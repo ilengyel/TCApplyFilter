@@ -11,12 +11,16 @@
     <DebugType>Full</DebugType>
     <AssemblyName>TCApplyFilter</AssemblyName>
     <OutputType>Exe</OutputType>
+    
     <PackageId>TCApplyFilter</PackageId>
     <PackageTags>console;test;filter</PackageTags>
     <PackageProjectUrl>https://github.com/ilengyel/TCApplyFilter</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
+    <PackageOutputPath>bin\</PackageOutputPath>
+    <IsTool>true</IsTool>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
     <NoWarn>1701;1702;1705;1573;1591;SA1600;SA1633;SA1602</NoWarn>
@@ -29,7 +33,14 @@
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
-    <PackageReference Include="Costura.Fody" Version="1.6.1" />
+    <PackageReference Include="CommandLineParser" Version="2.1.1-beta">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Costura.Fody" Version="1.6.2">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>
